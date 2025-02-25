@@ -1,2 +1,2 @@
 # mazeSolv
-Maze Solver
+Maze Solver in Python3
