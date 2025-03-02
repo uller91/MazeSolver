@@ -1,5 +1,8 @@
-from window import Window, Line, Point
+import time
+
+from window import Window, Point
 from cell import Cell
+from maze import Maze
             
 
 def main():
@@ -11,6 +14,7 @@ def main():
     #drawing
     #win.draw_line(Line(Point(100, 100), Point(300, 300)), "black")
     #win.draw_line(Line(Point(100, 300), Point(300, 100)), "black")
+    '''
     cell_1 = Cell(win, Point(100, 100), Point(300, 300))
     cell_1.draw()
 
@@ -39,7 +43,9 @@ def main():
     cell_2.draw_move(cell_3)
     cell_3.draw_move(cell_2, True)
     cell_2.draw_move(cell_5)
+    '''
 
+    maze = Maze(win, Point(100, 100), 12, 8, 50, 50)
 
     #waiting for the window to close
     win.wait_for_close()
