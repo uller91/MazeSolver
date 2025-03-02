@@ -22,3 +22,10 @@ class Cell():
             self.__w.draw_line(Line(Point(self.__x1, self.__y1), Point(self.__x2, self.__y1)), fill_color)
         if self.bottom_wall:
             self.__w.draw_line(Line(Point(self.__x1, self.__y2), Point(self.__x2, self.__y2)), fill_color)
+
+    def draw_move(self, to_cell, undo=False):
+        if undo == True:
+            fill_color = "grey"
+        else:
+            fill_color = "red"
+        self.__w.draw_line(Line(Point((self.__x1 + self.__x2)/2, (self.__y1 + self.__y2)/2), Point((to_cell.__x1 + to_cell.__x2)/2, (to_cell.__y1 + to_cell.__y2)/2)), fill_color)

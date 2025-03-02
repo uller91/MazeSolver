@@ -30,10 +30,15 @@ def main():
     cell_6.draw("blue")
 
     cell_7 = Cell(win, Point(500, 100), Point(700, 300), r_w = False, l_w = False, b_w = False)
-    cell_7.draw("yellow")\
+    cell_7.draw("yellow")
     
     cell_8 = Cell(win, Point(500, 100), Point(700, 300), l_w = False, t_w = False, r_w = False)
     cell_8.draw("yellow")
+
+    cell_1.draw_move(cell_2)
+    cell_2.draw_move(cell_3)
+    cell_3.draw_move(cell_2, True)
+    cell_2.draw_move(cell_5)
 
 
     #waiting for the window to close
