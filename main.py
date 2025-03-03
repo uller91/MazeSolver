@@ -45,7 +45,8 @@ def main():
     cell_2.draw_move(cell_5)
     '''
 
-    maze = Maze(win, Point(100, 100), 12, 8, 50, 50)
+    maze = Maze(Point(100, 100), 12, 8, 50, 50, win)
+    maze._break_entrance_and_exit()
 
     #waiting for the window to close
     win.wait_for_close()

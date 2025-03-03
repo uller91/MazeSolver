@@ -16,12 +16,23 @@ class Cell():
     def draw(self, fill_color = "black"):
         if self.left_wall:
             self._w.draw_line(Line(Point(self._x1, self._y1), Point(self._x1, self._y2)), fill_color)
+        else:
+            self._w.draw_line(Line(Point(self._x1, self._y1), Point(self._x1, self._y2)), "green")
+
         if self.right_wall:
             self._w.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)), fill_color)
+        else:
+            self._w.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)), "green")
+
         if self.top_wall:
             self._w.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)), fill_color)
+        else:
+            self._w.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)), "green")
+
         if self.bottom_wall:
             self._w.draw_line(Line(Point(self._x1, self._y2), Point(self._x2, self._y2)), fill_color)
+        else:
+            self._w.draw_line(Line(Point(self._x1, self._y2), Point(self._x2, self._y2)), "green")
 
     def draw_move(self, to_cell, undo=False):
         if undo == True:
