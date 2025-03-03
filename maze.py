@@ -54,9 +54,7 @@ class Maze():
     def _break_walls_v0_r(self, i, j):
         
         if i == self._num_columns:
-            for i in range(self._num_columns):
-                for j in range(self._num_rows):
-                    self._cells[i][j].visited = False
+            self._reset_cells_visited()
             #print("last cell")
             return
 
@@ -103,3 +101,11 @@ class Maze():
             self._break_walls_v0_r(i+1, 0)
         else:
             self._break_walls_v0_r(i, j+1)
+
+    def _reset_cells_visited(self):
+        for i in range(self._num_columns):
+                for j in range(self._num_rows):
+                    self._cells[i][j].visited = False
+
+
+
