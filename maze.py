@@ -107,5 +107,49 @@ class Maze():
                 for j in range(self._num_rows):
                     self._cells[i][j].visited = False
 
+    def solve(self, i, j):
+        return self._solve_r(i, j)
+    
+    def _solve_r(self, i, j):
+        self._animate()
+        self._cells[i][j].visited = True
+        if i == self._num_columns-1 and j == self._num_rows-1:
+            return True
+
+        available_neighbours = []
+        #print(f"{i} and {j}")
+        if i != 0 and self._cells[i][j].left_wall == False and self._cells[i-1][j].visited == False:
+            available_neighbours.append([i-1, j])
+        if i != self._num_columns-1 and self._cells[i][j].right_wall == False and self._cells[i+1][j].visited == False:
+            available_neighbours.append([i+1, j])
+        if j != 0 and self._cells[i][j].top_wall == False and self._cells[i][j-1].visited == False:
+            available_neighbours.append([i, j-1])
+        if j != self._num_rows-1 and self._cells[i][j].bottom_wall == False and self._cells[i][j+1].visited == False:
+            available_neighbours.append([i, j+1])
+        for neighbour in available_neighbours:
+            i_n = neighbour[0]
+            j_n = neighbour[1]
+            self._cells[i][j].draw_move(self._cells[i_n][j_n])
+            if self._solve_r(i_n, j_n):
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[i_n][j_n], True)
+
+        return False
 
 
+
+"""
+dfs
+    def depth_first_search(self, start_vertex):    
+        visited = []
+        self.depth_first_search_r(visited, start_vertex)
+        return visited
+
+    def depth_first_search_r(self, visited, current_vertex):
+        visited.append(current_vertex)
+        sorted_neighbors = sorted(self.graph[current_vertex])
+        for neighbor in sorted_neighbors:
+            if neighbor not in visited:
+                self.depth_first_search_r(visited, neighbor)
+"""
