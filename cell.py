@@ -2,7 +2,7 @@ from window import Line, Point
 
 
 class Cell():
-    def __init__(self, win, point_1, point_2, l_w = True, r_w = True, t_w = True, b_w = True): #top left and bottom right corners
+    def __init__(self, win, point_1, point_2, l_w = True, r_w = True, t_w = True, b_w = True, visited = False): #top left and bottom right corners
         self._x1 = point_1.x
         self._y1 = point_1.y
         self._x2 = point_2.x
@@ -12,6 +12,7 @@ class Cell():
         self.right_wall = r_w
         self.top_wall = t_w
         self.bottom_wall = b_w
+        self.visited = visited
 
     def draw(self, fill_color = "black"):
         if self.left_wall:
