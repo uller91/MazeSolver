@@ -55,12 +55,10 @@ class Maze():
         
         if i == self._num_columns:
             self._reset_cells_visited()
-            #print("last cell")
             return
 
         self._cells[i][j].visited = True
         neighbours = []
-        #print(f"{i} and {j}")
         if i != 0:
             neighbours.append([i-1, j])
         if i != self._num_columns-1:
@@ -69,7 +67,6 @@ class Maze():
             neighbours.append([i, j-1])
         if j != self._num_rows-1:
             neighbours.append([i, j+1])
-        #print(neighbours)
         
         walls = ["left", "right", "top", "bottom"]
         walls_to_break = random.sample(walls, random.randint(1, 2))
@@ -116,7 +113,6 @@ class Maze():
             return True
 
         available_neighbours = []
-        #print(f"{i} and {j}")
         if i != 0 and self._cells[i][j].left_wall == False and self._cells[i-1][j].visited == False:
             available_neighbours.append([i-1, j])
         if i != self._num_columns-1 and self._cells[i][j].right_wall == False and self._cells[i+1][j].visited == False:
