@@ -75,27 +75,26 @@ class Maze():
         walls_to_break = random.sample(walls, random.randint(1, 2))
 
         for wall in walls_to_break:
-            match wall:
-                case "left":
-                    self._cells[i][j].left_wall = False
-                    if [i-1, j] in neighbours:
-                        self._cells[i-1][j].right_wall = False
-                        self._draw_cell(i-1, j)
-                case "right":
-                    self._cells[i][j].right_wall = False
-                    if [i+1, j] in neighbours:
-                        self._cells[i+1][j].left_wall = False
-                        self._draw_cell(i+1, j)
-                case "top":
-                    self._cells[i][j].top_wall = False
-                    if [i, j-1] in neighbours:
-                        self._cells[i][j-1].bottom_wall = False
-                        self._draw_cell(i, j-1)
-                case "bottom":
-                    self._cells[i][j].bottom_wall = False
-                    if [i, j+1] in neighbours:
-                        self._cells[i][j+1].top_wall = False
-                        self._draw_cell(i, j+1)
+            if wall == "left" and i != 0:
+                self._cells[i][j].left_wall = False
+                if [i-1, j] in neighbours:
+                    self._cells[i-1][j].right_wall = False
+                    self._draw_cell(i-1, j)
+            if wall == "right" and i != self._num_columns-1:
+                self._cells[i][j].right_wall = False
+                if [i+1, j] in neighbours:
+                    self._cells[i+1][j].left_wall = False
+                    self._draw_cell(i+1, j)
+            if wall == "top" and j != 0:
+                self._cells[i][j].top_wall = False
+                if [i, j-1] in neighbours:
+                    self._cells[i][j-1].bottom_wall = False
+                    self._draw_cell(i, j-1)
+            if wall == "bottom" and j != self._num_rows-1:
+                self._cells[i][j].bottom_wall = False
+                if [i, j+1] in neighbours:
+                    self._cells[i][j+1].top_wall = False
+                    self._draw_cell(i, j+1)
     
         if j == self._num_rows-1:
             self._break_walls_v0_r(i+1, 0)
@@ -126,7 +125,7 @@ class Maze():
             available_neighbours.append([i, j-1])
         if j != self._num_rows-1 and self._cells[i][j].bottom_wall == False and self._cells[i][j+1].visited == False:
             available_neighbours.append([i, j+1])
-        for neighbour in available_neighbours:
+        for neighbour in random.sample(available_neighbours, len(available_neighbours)):
             i_n = neighbour[0]
             j_n = neighbour[1]
             self._cells[i][j].draw_move(self._cells[i_n][j_n])
@@ -136,20 +135,3 @@ class Maze():
                 self._cells[i][j].draw_move(self._cells[i_n][j_n], True)
 
         return False
-
-
-
-"""
-dfs
-    def depth_first_search(self, start_vertex):    
-        visited = []
-        self.depth_first_search_r(visited, start_vertex)
-        return visited
-
-    def depth_first_search_r(self, visited, current_vertex):
-        visited.append(current_vertex)
-        sorted_neighbors = sorted(self.graph[current_vertex])
-        for neighbor in sorted_neighbors:
-            if neighbor not in visited:
-                self.depth_first_search_r(visited, neighbor)
-"""
